@@ -40,7 +40,7 @@
 
 .create-form__item,
 .search-form__item{
-    width: 70%;
+    width: 75%;
     display: flex;
 }
 
@@ -48,7 +48,7 @@
 .search-form__item-input{
     margin-right: 10px;
     padding: 10px;
-    width: 70%;
+    width: 60%;
     height: 40px;
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -57,11 +57,43 @@
 .create-form__item-select,
 .search-form__item-select{
     padding: 10px;
-    width: 30%;
+    margin-right: 10px;
+    width: 20%;
     height: 40px;
     border: 1px solid #ddd;
     border-radius: 3px;
     appearance: none;
+    line-height: 20px;
+}
+
+.create-form__item-date,
+.search-form__item-date{
+    padding: 10px;
+    width: 20%;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.create-form__date,
+.search-form__date{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: -4px;
+    border: none;
+    cursor:pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator{
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor:pointer;
+
 }
 
 .create-form__button,
@@ -98,13 +130,24 @@
 
 .todo-table__header{
     padding: 12px;
-    width: 20%;
-    text-align: left;
+    width: 90%;
     font-weight: bold;
+    display: flex;
+    justify-content: space-between;
 }
 
-.todo-table__header-span{
-    margin-right: 40%;
+.todo-table__header-todo{
+    width: 50%;
+}
+
+.todo-table__header-category{
+    width: 20%;
+    margin-left: 4%;
+}
+
+.todo-table__header-date{
+    width: 20%;
+    margin-right: 3%;
 }
 
 .todo-table__item:first-of-type {
@@ -118,20 +161,40 @@
     justify-content: space-between;
 }
 
-.update-form-item{
-    width: 40%;
+.update-form__todo{
+    width: 45%;
     line-height: 50%;
 }
 
-.update-form__item-input{
+.update-form__todo-input{
     width: 100%;
+    margin-right: 30%;
     outline: none;
     border: none;
 }
 
-.update-form__item-p{
+.update-form__category{
+    width: 15%;
+    margin-left: 3%;
+    line-height: 50%;
+}
+
+.update-form__category-p{
     text-align: left;
     font-size: 13px;
+}
+
+.update-form__date{
+    width: 15%;
+    margin-right: 6%;
+}
+
+.update-form__date-input{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
+    cursor:pointer;
 }
 
 .update-form__button{
