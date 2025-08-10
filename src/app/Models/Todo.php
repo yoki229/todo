@@ -10,7 +10,8 @@ class Todo extends Model
 {
     protected $fillable = [
         'content',
-        'category_id'
+        'category_id',
+        'scheduled_date',
     ];
     //Controllerで Todo::create($todo);の際 id等を無視してcontent、category_idを保存可能
 
@@ -27,6 +28,12 @@ class Todo extends Model
     public function scopeKeywordSearch($query, $keyword){
         if(!empty($keyword)){
             $query->where('content','like','%'.$keyword.'%');
+        }
+    }
+
+    public function scopeDateSearch($query, $scheduled_date){
+        if(!empty($scheduled_date)){
+            $query->where('scheduled_date', $scheduled_date);
         }
     }
 }

@@ -23,6 +23,7 @@
 </div>
 
 <div class="todo__content">
+
     <div class="section__title">
         <h2>新規作成</h2>
     </div>
@@ -35,11 +36,15 @@
                 <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
                 @endforeach
             </select>
+            <div class="create-form__item-date">
+                <input type="date" class="create-form__date" name="scheduled_date" value="{{ old('scheduled_date') }}">
+            </div>
         </div>
         <div class="create-form__button">
             <button class="create-form__button-submit" type="submit">作成</button>
         </div>
     </form>
+
     <div class="section__title">
         <h2>Todo検索</h2>
     </div>
@@ -50,9 +55,12 @@
             <select class="search-form__item-select" name="category_id">
                 <option value="">カテゴリ</option>
                 @foreach($categories as $category)
-                <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
+            <div class="search-form__item-date">
+                <input type="date" class="search-form__date" name="scheduled_date" value=" {{old('scheduled_date')}} ">
+            </div>
         </div>
         <div class="search-form__button">
             <button class="search-form__button-submit" type="submit">検索</button>
@@ -63,8 +71,9 @@
         <table class="todo-table__inner">
             <tr class="todo-table__row">
                 <th class="todo-table__header">
-                    <span class="todo-table__header-span">Todo</span>
-                    <span class="todo-table__header-span">カテゴリ</span>
+                    <span class="todo-table__header-todo">Todo</span>
+                    <span class="todo-table__header-category">カテゴリ</span>
+                    <span class="todo-table__header-date">締切日</span>
                 </th>
             </tr>
 
@@ -74,12 +83,15 @@
                     <form class="update-form" action="/todos/update" method="post">
                     @method('PATCH')
                     @csrf
-                        <div class="update-form__item">
-                            <input type="hidden" name="id" value="{{ $todo['id'] }}">
-                            <input type="text" class="update-form__item-input" name="content" value="{{ $todo['content'] }}">
+                        <div class="update-form__todo">
+                            <input type="hidden" name="id" value="{{ $todo->id }}">
+                            <input type="text" class="update-form__todo-input" name="content" value="{{ $todo->content }}">
                         </div>
-                        <div class="update-form__item">
-                            <p class="update-form__item-p">{{ $todo['category']['name'] }}</p>
+                        <div class="update-form__category">
+                            <p class="update-form__category-p">{{ $todo->category->name }}</p>
+                        </div>
+                        <div class="update-form__date">
+                            <input type="date" class="update-form__date-input" name="scheduled_date" value="{{ $todo-> scheduled_date_formatted }}">
                         </div>
                         <div class="update-form__button">
                             <button class="update-form__button-submit" type="submit">更新</button>
